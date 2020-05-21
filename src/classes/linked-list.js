@@ -139,16 +139,16 @@ class LinkedList {
   }
 
 
-  inertLast(value) {
-    let currNode = this.head;
-    if (currNode == null) {
+  insertLast(value) {
+    let currentNode = this.head;
+    if (currentNode == null) {
       this.insertFirst(value);
       return;
     }
-    while (currNode.next != null) {
-      currNode = currNode.next;
+    while (currentNode.next != null) {
+      currentNode = currentNode.next;
     }
-    currNode.next = new _Node(value, null);
+    currentNode.next = new _Node(value, null);
   }
 }
 
