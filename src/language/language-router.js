@@ -19,7 +19,7 @@ languageRouter
         return res.status(404).json({
           error: `You don't have any languages`,
         })
-
+        console.log(language)
       req.language = language
       next()
     } catch (error) {
@@ -70,6 +70,7 @@ languageRouter
 languageRouter
   .post('/guess',bodyParser,  async (req, res, next) => {
       let {guess} = req.body; 
+     
       if(!guess || guess === '') {
         return res.status(400).json({error: `Missing 'guess' in request body`})
       }
@@ -87,15 +88,18 @@ languageRouter
           req.app.get('db'),
           req.language.id
         )
+        console.log(words)
 
         // set all words into a linked list starting with the head 
         // put current head node aside
 
         let wordsLinkedList = new LinkedList()
         let currentNodeID = head.head
-        for (let i=0; i<words.length; i++) {
+        while (currentNodeID) {
           let currentNodeItem = words.find(item => {
+            console.log('Line 100:', item.id)
             return item.id === currentNodeID
+            
           })
         let addItem = {
           id: currentNodeItem.id,
@@ -111,13 +115,14 @@ languageRouter
 
       }
       
-      let originalHead = wordsLinkedList.head
+      let originalHead = wordsLinkedList.head;
 
       // compare if guess is true or false
       if(guess.toLowerCase() != head.translation.toLowerCase()) {
         // wrong guess
 
-        let next = words.find(item => item.id === next);
+        let next = words.find(item => item.id === head.next);
+
         head.memory_value = 1;
 
         // set db and linkedList to new information
@@ -174,7 +179,7 @@ languageRouter
         // old head to new position 
 
         wordsLinkedList.head = wordsLinkedList.head.next;
-        wordsLinkedList.insertAtOrLast(originalHead.value, head.memory_value)
+        wordsLinkedList.insertAtOrLast(originalHead.value , head.memory_value)
         await LanguageService.updateHead(req.app.get('db'), req.language.id, head.next);
 
         // update the words in database
