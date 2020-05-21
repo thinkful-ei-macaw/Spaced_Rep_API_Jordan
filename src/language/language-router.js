@@ -19,7 +19,7 @@ languageRouter
         return res.status(404).json({
           error: `You don't have any languages`,
         })
-        console.log(language)
+        // console.log(language)
       req.language = language
       next()
     } catch (error) {
@@ -70,6 +70,7 @@ languageRouter
 
 languageRouter
   .post('/guess',bodyParser,  async (req, res, next) => {
+    // pulling request out of body
       let {guess} = req.body; 
      
       if(!guess || guess === '') {
@@ -82,6 +83,7 @@ languageRouter
           req.app.get('db'),
           req.language.id
         )
+        // console.log('This is the head', head)
        
         // get total words to use for correct and incorrect answers
 
@@ -89,13 +91,14 @@ languageRouter
           req.app.get('db'),
           req.language.id
         )
-        console.log('this is words',words)
+        // checking to see if I have a words list
+        // console.log('this is words',words)
 
         // set all words into a linked list starting with the head 
         // put current head node aside
 
         let wordsLinkedList = new LinkedList();
-        // console.log(head)
+        console.log('this is a linked list', wordsLinkedList)
         let currentNodeID = req.language.head
         for (let i = 0; i < words.length; i++) {
           let currentNodeItem = words.find(item => {
@@ -120,7 +123,7 @@ languageRouter
 
       }
       let originalHead = wordsLinkedList.head;
-            console.log('this is the original head', originalHead)
+            // console.log('this is the original head', originalHead)
 
 
       // compare if guess is true or false
