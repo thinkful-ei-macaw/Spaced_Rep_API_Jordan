@@ -98,14 +98,22 @@ languageRouter
         // put current head node aside
 
         let wordsLinkedList = new LinkedList();
-        console.log('this is a linked list', wordsLinkedList)
+        // console.log('this is a linked list instance', wordsLinkedList)
+
+        // this is the current head for request body
         let currentNodeID = req.language.head
+        // console.log('this is a head', currentNodeID)
+
+        // loop through the words array 
         for (let i = 0; i < words.length; i++) {
+          // console.log('this is the words array', words)
+
           let currentNodeItem = words.find(item => {
-            // console.log('Line 100:', item.id)
-            return item.id === currentNodeID
-            
+            // console.log('Find the ID of each item and assign it to the current head:', item.id)
+            return item.id === currentNodeID            
           });
+          // 
+          // console.log('This is Node ID:', currentNodeID)
         let addItem = {
           id: currentNodeItem.id,
           language_id: currentNodeItem.language_id,
@@ -114,14 +122,18 @@ languageRouter
           memory_value: currentNodeItem.memory_value, 
           correct_count: currentNodeItem.correct_count, 
           incorrect_count: currentNodeItem.incorrect_count,
-          answer: currentNodeItem.answer
         };
+        // all language ID's printed 1
+        // console.log('This is the language ID of a given node', currentNodeItem.language_id)
+        // console.log('This is the original word of a give node', currentNodeItem.original)
+      
         
         // console.log(wordsLinkedList)
         wordsLinkedList.insertLast(addItem)
         currentNodeID = currentNodeItem.next;
 
       }
+      // this is a duplicate 
       let originalHead = wordsLinkedList.head;
             // console.log('this is the original head', originalHead)
 
@@ -145,8 +157,11 @@ languageRouter
         // next to old head
         //old head to next's next
 
+        // // this is a duplicate 
         wordsLinkedList.head = wordsLinkedList.head.next; // head to 1
-        let tempNode = wordsLinkedList.head.next; // = 3 
+
+
+        let tempNode = wordsLinkedList.head.next; // = 2
         wordsLinkedList.head.next = originalHead; // 1 -> 2
         originalHead.next = tempNode;
 
@@ -173,7 +188,7 @@ languageRouter
           wordCorrectCount: next.correct_count,
            wordIncorrectCount: next.incorrect_count, 
            totalScore: req.language.total_score, 
-           answer: next.translation, 
+           answer: head.translation, 
            isCorrect: false
            })
       }
