@@ -2,7 +2,7 @@ const express = require('express')
 const LanguageService = require('./language-service')
 const {requireAuth} = require('../middleware/jwt-auth')
 const languageRouter = express.Router()
-const LinkedList = require('../classes/linked-list')
+const LinkedList = require('../classes/linked-list;
 const bodyParser = express.json()
 
 
@@ -114,6 +114,7 @@ languageRouter
           });
           // 
           // console.log('This is Node ID:', currentNodeID)
+
         let addItem = {
           id: currentNodeItem.id,
           language_id: currentNodeItem.language_id,
@@ -121,12 +122,15 @@ languageRouter
           translation: currentNodeItem.translation, 
           memory_value: currentNodeItem.memory_value, 
           correct_count: currentNodeItem.correct_count, 
-          incorrect_count: currentNodeItem.incorrect_count,
+          incorrect_count: currentNodeItem.incorrect_count
         };
-        // all language ID's printed 1
+        // console.log('Object', addItem)
         // console.log('This is the language ID of a given node', currentNodeItem.language_id)
         // console.log('This is the original word of a give node', currentNodeItem.original)
-      
+        // console.log('This is the translation', currentNodeItem.translation)
+        // console.log('This is the memory value', currentNodeItem.memory_value)
+        console.log('This is the correct count', currentNodeItem.correct_count)
+        // console.log('This is the incorrect count', currentNodeID.incorrect_count)
         
         // console.log(wordsLinkedList)
         wordsLinkedList.insertLast(addItem)
@@ -157,7 +161,7 @@ languageRouter
         // next to old head
         //old head to next's next
 
-        // // this is a duplicate 
+        // 
         wordsLinkedList.head = wordsLinkedList.head.next; // head to 1
 
 
@@ -185,12 +189,14 @@ languageRouter
         // console.log(req.language)
           res.status(200).json({
           nextWord: next.original,
-          wordCorrectCount: next.correct_count,
+           wordCorrectCount: next.correct_count,
            wordIncorrectCount: next.incorrect_count, 
            totalScore: req.language.total_score, 
            answer: head.translation, 
            isCorrect: false
            })
+
+
       }
       else { 
         let next = words.find(item => item.id === head.next)
@@ -201,7 +207,7 @@ languageRouter
 
         let newTotalScore = head.total_score + 1
         // set database and linked list to new information
-        await LanguageService.updateScore(req.app.get('db'), language_id, newTotalScore)
+        await LanguageService.updateScore(req.app.get('db'), req.language.id, newTotalScore)
 
         //incorrect count increse 
         originalHead.value.correct_count = originalHead.value.correct_count + 1;
