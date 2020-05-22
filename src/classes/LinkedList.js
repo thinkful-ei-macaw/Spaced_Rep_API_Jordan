@@ -34,7 +34,7 @@ class LinkedList {
   insertAfter(value, findValue) {
     let currentNode = this.head;
     if (currentNode === null) {
-      console.error(`The list is emppty`);
+      console.error('The list is empty');
       return;
     }
     while (currentNode.next != null) {
@@ -49,22 +49,27 @@ class LinkedList {
   }
 
   insertAt(value, numPosition) {
-    let currentNode = this.head;
+    if (numPosition < 0 ) {
+      throw new Error ('Position error');
+    }
     if (numPosition === 0) {
-      this.head = new _Node(value, currentNode.next);
-      return;
+      this.insertFirst(value);
+    } else {
+      const node = this._findNthElement(numPosition -1);
+      const newNode = new _Node(value, null);
+      newNode.next = node.next;
+      node.next = newNode;
     }
-    let count = 1;
-    while (currentNode.next != null) {
-      if (count === numPosition) {
-        currentNode.next = new _Node(value, currentNode.next);
-        return;
-      }
-      currentNode = currentNode.next;
-      count++;
-    }
-    console.error(`Node with position of ${numPosition} does not exist.`);
   }
+
+  _findNthElement(position) {
+    let node = this.head;
+    for (let i=0; i<position; i++) {
+      node = node.next;
+    }
+    return node;
+  }
+
 
   insertAtOrLast(value, numPosition) {
     let currentNode = this.head;
@@ -117,17 +122,17 @@ class LinkedList {
     }
   }
 
-  moveToNext() {
-    if (this.head == null) {
-      return;
-    }
-    this.head = this.head.next;
-  }
+  // moveToNext() {
+  //   if (this.head == null) {
+  //     return;
+  //   }
+  //   this.head = this.head.next;
+  // }
 
   find(value) {
     let currentNode = this.head;
     if (currentNode == null) {
-      console.error(`The list is empty`);
+      console.error('The list is empty');
     }
     while (currentNode.next != null) {
       if (currentNode.value === value) {
@@ -145,11 +150,11 @@ class LinkedList {
       this.insertFirst(value);
       return;
     }
-    while (currentNode.next != null) {
+    while (currentNode.next !== null) {
       currentNode = currentNode.next;
     }
     currentNode.next = new _Node(value, null);
   }
 }
 
-module.exports = LinkedList;
+module.exports = {LinkedList};
