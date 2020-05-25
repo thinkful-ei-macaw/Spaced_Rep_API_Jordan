@@ -17,34 +17,34 @@ class LinkedList {
 
   insertBefore(value, findValue) {
     let currentNode = this.head;
-    if (currentNode == null) {
-      console.error('This list is empty.');
+    if (currentNode === null) {
+     
       return;
     }
-    while (currentNode.next != null) {
+    while (currentNode.next !== null) {
       if (currentNode.next.value === findValue) {
         currentNode.next = new _Node(value, currentNode.next);
         return;
       }
       currentNode = currentNode.next;
     }
-    console.log(`Node with ${findValue} does not exist`);
+
   }
 
   insertAfter(value, findValue) {
     let currentNode = this.head;
     if (currentNode === null) {
-      console.error('The list is empty');
+     
       return;
     }
-    while (currentNode.next != null) {
+    while (currentNode.next !== null) {
       if (currentNode.value === findValue) {
         currentNode.next = new _Node(value, currentNode.next);
         return;
       }
       currentNode = currentNode.next;
     }
-    console.error(`Node with ${findValue} does not exist!`);
+  
 
   }
 
@@ -65,6 +65,9 @@ class LinkedList {
   _findNthElement(position) {
     let node = this.head;
     for (let i=0; i<position; i++) {
+      if (node.next === null) {
+        return node;
+      }
       node = node.next;
     }
     return node;
@@ -78,7 +81,7 @@ class LinkedList {
       return;
     }
     let count = 1;
-    while (currentNode.next != null) {
+    while (currentNode.next !== null) {
       if (count === numPosition) {
         currentNode.next = new _Node(value, currentNode.next);
         return;
@@ -90,10 +93,10 @@ class LinkedList {
   }
 
   remove(value) {
-    if (this.head == null) {
+    if (this.head === null) {
       return;
     }
-    if (this.head.next == null) {
+    if (this.head.next === null) {
       if (this.head.value === value) {
         this.head = null;
         return;
@@ -108,7 +111,7 @@ class LinkedList {
     }
     let previousNode;
     let currentNode;
-    while (currentNode.next != null) {
+    while (currentNode.next !== null) {
       if (currentNode.next.value === value) {
         currentNode.next = currentNode.next.next;
         return;
@@ -131,10 +134,10 @@ class LinkedList {
 
   find(value) {
     let currentNode = this.head;
-    if (currentNode == null) {
+    if (currentNode === null) {
       console.error('The list is empty');
     }
-    while (currentNode.next != null) {
+    while (currentNode.next !== null) {
       if (currentNode.value === value) {
         return currentNode;
       }
@@ -146,7 +149,7 @@ class LinkedList {
 
   insertLast(value) {
     let currentNode = this.head;
-    if (currentNode == null) {
+    if (currentNode === null) {
       this.insertFirst(value);
       return;
     }

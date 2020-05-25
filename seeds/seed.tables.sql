@@ -21,14 +21,14 @@ VALUES
 
 INSERT INTO "word" ("id", "language_id", "original", "translation", "next")
 VALUES
-  (1, 1, 'Hello', 'Hola', 2),
-  (2, 1, 'Home', 'Case', 3),
-  (3, 1, 'Family', 'Familia', 4),
-  (4, 1, 'School', 'Escuela', 5),
-  (5, 1, 'Dog', 'Perro', 6),
-  (6, 1, 'Cat', 'Gato', 7),
-  (7, 1, 'Computer', 'Computadora', 8),
-  (8, 1, 'Tree', 'Arbol', null);
+  (1, 1, 'Hola', 'Hello', 2),
+  (2, 1, 'Casa', 'Home', 3),
+  (3, 1, 'Familia', 'Family', 4),
+  (4, 1, 'Escuela', 'School', 5),
+  (5, 1, 'Perro', 'Dog', 6),
+  (6, 1, 'Gato', 'Cat', 7),
+  (7, 1, 'Computadora', 'Computador', 8),
+  (8, 1, 'Arbol', 'Tree', null);
 
 UPDATE "language" SET head = 1 WHERE id = 1;
 

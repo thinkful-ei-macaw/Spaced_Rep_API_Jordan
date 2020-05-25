@@ -86,7 +86,7 @@ languageRouter
 
       let isCorrect;
 
-      if (guess === list.head.value.translation) {
+      if (guess.toLowerCase() === list.head.value.translation.toLowerCase()) {
         isCorrect = true;
         req.language.total_score += 1;
         head.value.correct_count += 1;
