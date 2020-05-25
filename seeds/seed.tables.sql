@@ -27,7 +27,7 @@ VALUES
   (4, 1, 'Escuela', 'School', 5),
   (5, 1, 'Perro', 'Dog', 6),
   (6, 1, 'Gato', 'Cat', 7),
-  (7, 1, 'Computadora', 'Computador', 8),
+  (7, 1, 'Computadora', 'Computer', 8),
   (8, 1, 'Arbol', 'Tree', null);
 
 UPDATE "language" SET head = 1 WHERE id = 1;
