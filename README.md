@@ -87,7 +87,7 @@ JSON Object requires:
 * password: string
 
 ```
-Response: **200 OK**
+Response: 200 OK
 ```
 
 ```
@@ -117,7 +117,7 @@ JSON Object requires:
 gets all of the languages and words
 
 ```
-**Response: 200 OK**
+Response: 200 OK
 
 ```
 
@@ -151,8 +151,8 @@ gets all of the languages and words
 gets the current word
 
 ```
-**Response: 200 OK
-**
+Response: 200 OK
+
 ```
 
 ```
@@ -173,8 +173,8 @@ JSON Object requires:
 * guess: string
 
 ```
-**Response: 200 OK
-**
+Response: 200 OK
+
 ```
 
 ```
@@ -199,7 +199,7 @@ JSON Object requires:
 * password: `string 7 letters minimum, one uppercase, one number, and one special character`
 
 ```
-**Response: 201 Created**
+Response: 201 Created
 ```
 ```
 
